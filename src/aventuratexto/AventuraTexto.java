@@ -124,7 +124,6 @@ public class AventuraTexto {
             }
         } else {
             System.out.println("Que tengas un buen día.");
-            // ezequiel no quiere que cambie los fuentes :(
         }
     }
     
