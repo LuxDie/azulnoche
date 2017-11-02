@@ -4,7 +4,7 @@ package aventuratexto;
 import javax.swing.JOptionPane;
 
 public class Hombre {
- ///comentario 1 en la rama.... 
+ ///comentario 1 en la rama2.... 
  String nombre;
  int edad = 20;
  int fuerza = 50;
