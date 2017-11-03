@@ -6,6 +6,7 @@ package auxiliares;
 /**
  *
  * @author Catardi Nicolas
+ * commit Desde netbeans
  */
 public class ManipulacionDeTextos {
     
