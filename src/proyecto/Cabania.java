@@ -43,14 +43,14 @@ public class Cabania {
     
     private String sectores (String textoUsuario) {
         String ret = "";
-    	do {
+    	if (getSector()!=0 && getSector()!=9) {
             switch (getSector()) {
                 case 1: ret = delanteCabania(textoUsuario);break;
                 case 2: ret = dentroCabania(textoUsuario);break;
                 case 3: ret = detrasCabania(textoUsuario);break;
                 default: ret = textos(999);break;
             }
-        } while (getSector()!=0 && getSector()!=9);
+        }
         
         switch (getSector()) {
             case 0: pers.setUbicacion("bosque"); break;
@@ -79,7 +79,7 @@ public class Cabania {
         	ret = textos(999);
         }
 
-        while (getSector()==1) {
+        if (getSector()==1) {
             switch (textoUsuario) {
                 case "mirar": ret = textos(14);break;
                 case "mirar cabaña": ret = textos(20);

@@ -41,16 +41,15 @@ public class SimuCalle {
     
     private String sectores (String textoUsuario) {
     	String ret = "";
-        do {
-            switch (getSector()) {
-                case 1: calle(textoUsuario);break;
-                default: ret = textos(999);break;
-            }
-        } while (getSector()!=0);
         
         if (getSector()==0) {
             pers.setUbicacion("bosque");
             setSector(1);
+        } else {
+            switch (getSector()) {
+                case 1: calle(textoUsuario);break;
+                default: ret = textos(999);break;
+            }
         }
         
         return ret;

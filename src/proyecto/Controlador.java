@@ -37,9 +37,10 @@ public class Controlador {
     }
 
     public String accion (String texto) {
+        
         if (!pers.getUbicacion().equals("termino")) {
             switch (pers.getUbicacion()) {
-                case "intro pueblo" : ret = textoIntroPueblo(pers);
+                case "intro pueblo" : ret = textoIntroPueblo(pers);break;
                 case "calle": ret = calle.logica(texto);break;
                 case "bosque": ret = bosq.logica(texto);break;
                 case "cabania": ret = cab.logica(texto);break;
@@ -56,6 +57,7 @@ public class Controlador {
         String ret;
         ret = "Bienvenido al juego.";
         pers.setUbicacion("bosque");
+        ret = ret +"\n"+ bosq.logica("mirar");
         return ret;
     }
     

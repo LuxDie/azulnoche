@@ -27,9 +27,9 @@ public class Interfaz extends javax.swing.JFrame {
         areaTexto.setEditable(false);
         inputTexto.setText("");
         this.controlador = controlador;
-        /*{
-            ventanaTexto(controlador.accion(""));
-        }*/
+        
+            
+        ventanaTexto(controlador.accion(""));
         System.out.println("Intf OK");
     }
     
