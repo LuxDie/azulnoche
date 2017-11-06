@@ -8,8 +8,6 @@ package interfaz;
 import java.io.PrintStream;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
-import proyecto.prueba;
-
 
 /**
  *
@@ -20,15 +18,23 @@ public class Interfaz extends javax.swing.JFrame {
     /**
      * Creates new form Interfaz
      */
-    public Interfaz() {
+    public Interfaz(proyecto.Controlador controlador) {
+        System.out.println("Intf init");
         initComponents();
         setSize(815, 600);
         setLocationRelativeTo(null);
         areaTexto.setOpaque(false);
         areaTexto.setEditable(false);
         inputTexto.setText("");
+        this.controlador = controlador;
+        /*{
+            ventanaTexto(controlador.accion(""));
+        }*/
+        System.out.println("Intf OK");
     }
-
+    
+    proyecto.Controlador controlador;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -124,7 +130,8 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEnviarActionPerformed
-        
+        String texto = textoUsuario();
+        ventanaTexto(controlador.accion(texto));
     }//GEN-LAST:event_botonEnviarActionPerformed
 
     /**
@@ -159,7 +166,7 @@ public class Interfaz extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Interfaz().setVisible(true);
+                new Interfaz(controlador).setVisible(true);
             }
         });
     }

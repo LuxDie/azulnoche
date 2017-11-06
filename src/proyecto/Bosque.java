@@ -43,21 +43,20 @@ public class Bosque {
     
     private String sectores (String textoUsuario) {
     	String ret = "";
-    	do {
+    	if (getSector()!=0 && getSector()!=9) {
             switch (getSector()) {
                 case 1: ret = entradaBosque(textoUsuario);break;
                 case 2: ret = bosqueCercano(textoUsuario);break;
                 case 3: ret = bosqueProfundo(textoUsuario);break;
                 default: ret = textos(999);break;
             }
-        } while (getSector()!=0 && getSector()!=9);
-        
-        switch (getSector()) {
-            case 0: pers.setUbicacion("calle");setSector(1);break;
-            case 9: pers.setUbicacion("cabania");setSector(3);break;
-            default: /*ERROR*/ ret = textos(999); break;
-        }
-        
+        } else {
+            switch (getSector()) {
+                case 0: pers.setUbicacion("calle");setSector(1);break;
+                case 9: pers.setUbicacion("cabania");setSector(3);break;
+                default: /*ERROR*/ ret = textos(999); break;
+            }
+        }   
         return ret;
     }
     
@@ -70,37 +69,35 @@ public class Bosque {
         	ret = textos(11);
         }
         
-        while (getSector()==1) {
-            switch (textoUsuario) {
-                case "mirar": ret = textos(10);break;
-                case "mirar al norte": ret = textos(20);break;
-                case "mirar al oeste": ret = textos(21);break;
-                case "mirar al este":
-                    if (pers.getBosque_tomeArdilla()==false) {
-                    	ret = textos(22);pers.setBosque_mireEste1(true);
-                    } else {
-                    	ret = textos(30);pers.setBosque_mireEste2(true);
-                    } break;
-                case "mirar al sur": ret = textos(23);break;
-                case "mirar ardilla": ret = textos(24);break;
-                case "tomar ardilla": 
-                    if (pers.getBosque_mireEste1()==true) {
-                    	ret = textos(25);
-                        pers.setBosque_tomeArdilla(true);
-                    } else {
-                    	ret = textos(90);
-                    } break;
-                case "tomar cuchillo":
-                    if (pers.getBosque_mireEste2()==true) {
-                    	ret = textos(31);
-                    	pers.setBosque_tomeCuchillo(true);
-                    } else {
-                    	ret = textos(91);
-                    } break;
-                case "ir al sur": setSector(2);break;
-                case "ir al norte": setSector(0);break;
-                default:ret = textos(0);break;
-            }
+        switch (textoUsuario) {
+            case "mirar": ret = textos(10);break;
+            case "mirar al norte": ret = textos(20);break;
+            case "mirar al oeste": ret = textos(21);break;
+            case "mirar al este":
+                if (pers.getBosque_tomeArdilla()==false) {
+                    ret = textos(22);pers.setBosque_mireEste1(true);
+                } else {
+                    ret = textos(30);pers.setBosque_mireEste2(true);
+                } break;
+            case "mirar al sur": ret = textos(23);break;
+            case "mirar ardilla": ret = textos(24);break;
+            case "tomar ardilla": 
+                if (pers.getBosque_mireEste1()==true) {
+                    ret = textos(25);
+                    pers.setBosque_tomeArdilla(true);
+                } else {
+                    ret = textos(90);
+                } break;
+            case "tomar cuchillo":
+                if (pers.getBosque_mireEste2()==true) {
+                    ret = textos(31);
+                    pers.setBosque_tomeCuchillo(true);
+                } else {
+                    ret = textos(91);
+                } break;
+            case "ir al sur": setSector(2);break;
+            case "ir al norte": setSector(0);break;
+            default:ret = textos(0);break;
         }
         
         return ret;
@@ -114,34 +111,32 @@ public class Bosque {
         	ret = textos(41);
         }
         
-        while (getSector()==2) {
-            switch (textoUsuario) {
-                case "mirar": ret = textos(40);break;
-                case "mirar al norte": ret = textos(51);break;
-                case "mirar al sur":
-                    if (pers.getBosque_mireMapa()==true) {
-                    	ret = textos(55);
-                    } else {
-                    	ret = textos(52);
-                    } break;
-                case "mirar al este": ret = textos (53);break;
-                case "mirar al oeste": ret = textos (54);break;
-                case "ir al norte": setSector(1);break;
-                case "ir al sur":
-                    if (pers.getBosque_mireMapa()==true) {
-                        setSector(3);
-                    } else {
-                    	ret = textos(93);
-                    } break;
-                case "mirar mapa":
-                    if (pers.getBosque_tengoMapa()==true) {
-                    	ret = textos(50);
-                    	pers.setBosque_mireMapa(true);
-                    } else {
-                    	ret = textos(92);
-                    } break;
-                default:ret = textos(0);break;
-            }
+        switch (textoUsuario) {
+            case "mirar": ret = textos(40);break;
+            case "mirar al norte": ret = textos(51);break;
+            case "mirar al sur":
+                if (pers.getBosque_mireMapa()==true) {
+                    ret = textos(55);
+                } else {
+                    ret = textos(52);
+                } break;
+            case "mirar al este": ret = textos (53);break;
+            case "mirar al oeste": ret = textos (54);break;
+            case "ir al norte": setSector(1);break;
+            case "ir al sur":
+                if (pers.getBosque_mireMapa()==true) {
+                    setSector(3);
+                } else {
+                    ret = textos(93);
+                } break;
+            case "mirar mapa":
+                if (pers.getBosque_tengoMapa()==true) {
+                    ret = textos(50);
+                    pers.setBosque_mireMapa(true);
+                } else {
+                    ret = textos(92);
+                } break;
+            default:ret = textos(0);break;
         }
         
         return ret;
@@ -165,13 +160,11 @@ public class Bosque {
         	ret = textos(999);
         }
         
-        while (getSector()==3) {
-            switch (textoUsuario) {
-                case "mirar": ret = textos(74);break;
-                case "ir al norte": setSector(2);break;
-                case "ir al sur": setSector(9);break;
-                default:ret = textos(0);break;
-            }
+        switch (textoUsuario) {
+            case "mirar": ret = textos(74);break;
+            case "ir al norte": setSector(2);break;
+            case "ir al sur": setSector(9);break;
+            default:ret = textos(0);break;
         }
         
         return ret;
